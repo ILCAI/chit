@@ -1,0 +1,47 @@
+version: '2.4'
+
+services:
+  database:
+    container_name: chit_database
+    image: mariadb
+    volumes:
+      - ./services/database/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: development
+      MYSQL_DATABASE: development
+      MYSQL_USER: development
+      MYSQL_PASSWORD: development
+    ports:
+      - 3306:3306
+
+  backend:
+    container_name: chit_backend
+    depends_on:
+      - database
+    build:
+      context: services/backend
+      target: development
+    volumes:
+      - ./services/backend/src:/app/src
+      - ./services/backend/scripts:/app/scripts
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: database
+      DB_PORT: 3306
+      DB_USER: development
+      DB_PASS: development
+      DB_NAME: development
+
+  frontend:
+    container_name: chit_frontend
+    depends_on:
+      - backend
+    build:
+      context: services/frontend
+      target: development
+    volumes:
+      - ./services/frontend/src:/app/src
+    ports:
+      - 8080:3000
+      - 3001:3001

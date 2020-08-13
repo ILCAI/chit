@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chit - Example Frontend</title>
+    <style>
+      .chit-messages {
+        padding: 8px;
+        overflow-y: scroll;
+        border: 1px solid #c0c0c0;
+        height: 400px;
+      }
+
+      .chit-input {
+        display: flex;
+        margin-top: 8px;
+        align-items: stretch;
+      }
+
+      .chit-message-input {
+        border: 1px solid #c0c0c0;
+        padding: 8px;
+      }
+
+      .chit-status {
+        width: 100px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chit">
+      <div class="chit-messages"></div>
+      <div class="chit-input">
+        <div class="chit-status">Connecting ...</div>
+        <input type="text" class="chit-message-input" disabled="disabled" />
+      </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
